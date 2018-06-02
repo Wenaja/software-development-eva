@@ -9,7 +9,7 @@ import model.ds.Iterator;
 
 public class Orb {
 	StringBuilder output = new StringBuilder();
-	MainWorkingFrame frame = new MainWorkingFrame(this);
+	//MainWorkingFrame frame = new MainWorkingFrame(this);
 	HuffmanControl comp = new HuffmanControl(this);
 	String input = "";
 	char[] ch_input = null;
