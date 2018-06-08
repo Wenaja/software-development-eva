@@ -2,15 +2,14 @@ package control.controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.component.UIComponent;
 
 @ManagedBean
 @SessionScoped
-public class Controller {
+public class InputController {
 	private User user;
-	private UIComponent uicomponent;
+	//private UIComponent uicomponent;
 	
-	public Controller() {
+	public InputController() {
 		user = new User();
 	}
 	

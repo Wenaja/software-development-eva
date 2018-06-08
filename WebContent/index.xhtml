@@ -5,14 +5,18 @@
 	<title>Eva</title>
 </h:head>
 <h:body>
-	<h:form id="eva-form">
-		<h:inputTextarea id="txt-ar-input" name="txt-ar-input" row="30" cols="50" value="#{controller.user.text}" />
+	<h:form id="eva-input-form">
+		<h:inputTextarea id="txt-ar-input" name="txt-ar-input" row="30" cols="50" value="#{inputController.user.text}" />
+	</h:form>
+	<h:form id="eva-control-form">
 		<h:panelGrid id="asdfghj" columns="1">
-			<h:commandButton id="btn-convert" action="#{controller.redirect}" value="Konv. Text" />
+			<h:commandButton id="btn-convert" action="#{inputController.redirect()}" value="Konv. Text" />
 			<h:commandButton id="btn-compress" action="destination" value="Komprimieren" />
 			<h:commandButton id="btn-clear-window" action="next" value="Fenster löschen" />
 		</h:panelGrid>
-		<h:inputTextarea id="txt-ar-output" name="txt-ar-output" row="30" cols="50" value="#{controller.user.text}" required="true" requiredMessage="#{controller.user.text}" />
+	</h:form>
+	<h:form id="eva-output-form">
+		<h:inputTextarea id="txt-ar-output" name="txt-ar-output" row="30" cols="50" value="#{inputController.user.text}" />
 	</h:form>
 </h:body>
 </html>
