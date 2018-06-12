@@ -1,31 +1,51 @@
 package control.controller;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
+
+import control.models.InputContainer;
+import control.models.SelectMenuHandler;
 
 @ManagedBean
-@SessionScoped
+@RequestScoped
 public class InputController {
-	private User user;
-	//private UIComponent uicomponent;
+	private InputContainer text;
+	private SelectMenuHandler items;
 	
 	public InputController() {
-		user = new User();
+		
 	}
 	
 	
+	@PostConstruct
+	public void initialize() {
+		text = new InputContainer();
+		items = new SelectMenuHandler();
+		
+		items.initialize();
+		text.setInputText(items.getItems().get(0));
+		
+	}
+	
+	public SelectMenuHandler getItems() {
+		return items;
+		
+	}
+	
+	public InputContainer getText() {
+		return text;
+	}
+
+	public void setText(InputContainer text) {
+		this.text = text;
+	}
+
 	public String redirect() {
 		return "index";
 	}
 	
-	public User getUser() {
-		//uicomponent = UIComponent.getCurrentComponent(FacesContext.getCurrentInstance());
-		//user.setUicomponent(uicomponent);
-		return user;
+	public String goBackToIndex() {
+		return "index";
 	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
 }
