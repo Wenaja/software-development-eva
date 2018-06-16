@@ -7,6 +7,7 @@
 	<title><h:outputText value="Eva" /></title>
 </h:head>
 <h:body>
+
 	<h:form id="eva-input-form">
 		<h:inputTextarea id="txt-area-input" name="txt-area-input" row="30" cols="50" value="#{inputController.text.inputText}" />
 		<h:outputLabel value="Entropiekodierung nach: " for="entropie" />
@@ -15,5 +16,6 @@
 		</h:selectOneMenu>
 		<h:commandButton id="btn-compress" action="#{inputController.redirect()}" value="Text komprimieren" />
 	</h:form>
+	<h3><h:outputText value="#{inputController.orb.ASCIIText}" rendered="#{inputController.isRendered()}" /></h3>
 </h:body>
 </html>

@@ -1,4 +1,4 @@
-package model.ds;
+package model.huffman;
 
 import java.util.ArrayList;
 import java.util.List;

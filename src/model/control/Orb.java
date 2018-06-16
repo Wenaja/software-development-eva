@@ -3,18 +3,17 @@ package model.control;
 import java.util.Hashtable;
 
 import javafx.event.ActionEvent;
-
-import model.ds.HuffmanTree;
-import model.ds.Iterator;
+import model.huffman.HuffmanTree;
+import model.huffman.Iterator;
 
 public class Orb {
-	StringBuilder output = new StringBuilder();
-	//MainWorkingFrame frame = new MainWorkingFrame(this);
-	HuffmanControl comp = new HuffmanControl(this);
 	String input = "";
 	char[] ch_input = null;
+	
+	StringBuilder output = new StringBuilder();
 	Hashtable<Integer, String> ascii = new Hashtable<Integer, String>();
 
+	
 	public Orb() {
 		initializeASCIIcodeTable();
 	}

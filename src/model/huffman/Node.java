@@ -1,4 +1,4 @@
-package model.ds;
+package model.huffman;
 
 public class Node {
 	private String letter;

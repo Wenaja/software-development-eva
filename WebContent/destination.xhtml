@@ -1,12 +1,18 @@
-<!DOCTYPE html>
-<html xmlns:h="http://xmlns.jcp.org/jsf/html">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-<meta charset="UTF-8" />
-<title>Insert title here</title>
+	<meta charset="UTF-8" />
+	<title>Insert title here</title>
 </h:head>
 <h:body>
-	<h1>Destination does reach</h1>
-	<p><h:outputText value="#{inputController.user.text}" /></p>
-	<p><h:outputText value="" /></p>
+	<h1><h:outputText value="Destination does reach" /></h1>
+	<h:outputFormat value="{0} {1}" >
+		<f:param value="#{inputController.text.item}"></f:param>
+		<f:param value="#{inputController.text.inputText}"></f:param>
+	</h:outputFormat>
+	
+	<h2>
+		<h:outputText value="#{inputController.orb.ASCIIText}" />
+	</h2>
 </h:body>
 </html>
