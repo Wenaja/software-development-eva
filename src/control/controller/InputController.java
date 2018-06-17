@@ -4,7 +4,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import control.models.InputContainer;
+import control.models.InputDataContainer;
+import control.models.OutputDataContainer;
 import control.models.SelectMenuHandler;
 import model.control.Orb;
 
@@ -12,71 +13,109 @@ import model.control.Orb;
 @RequestScoped
 public class InputController {
 	private Boolean rendered;
-	
-	private InputContainer text;
-	private SelectMenuHandler items;
-	
-	
-	Orb orb;
+
+	private InputDataContainer inputData;
+	private OutputDataContainer outputData;
+	private SelectMenuHandler selectMenuItems;
+	private Orb orb;
+
 	
 	public InputController() {
-		
+
 	}
-	
-	
+
 	@PostConstruct
 	public void initialize() {
 		rendered = new Boolean("false");
 		orb = new Orb();
-		text = new InputContainer();
-		items = new SelectMenuHandler();
-		
-		items.initialize();
-		text.setInputText(items.getItems().get(0));
-		
+		inputData = new InputDataContainer();
+		outputData = new OutputDataContainer();
+		selectMenuItems = new SelectMenuHandler();
+
+		selectMenuItems.initialize();
+		inputData.setInputText(selectMenuItems.getItems().get(0));
+
 	}
-	
-	
+
 	public String redirect() {
-		String input = text.getInputText();
-		if(!input.isEmpty()) {
-			orb.takeInputToControl(text.getInputText());
-			rendered = true;
-		}
-		
+		takeInputTextToOrbControl();
+		tranferInputToDigitalForm();
+		produceCompressionSet();
+		setRenderedProperty();
+	
 		return "index";
 	}
-	
+
+	private void takeInputTextToOrbControl() {
+		if(!inputData.getInputText().isEmpty()) {
+			orb.takeInputToControl(inputData.getInputText());
+		}
+	}
+
+	private void tranferInputToDigitalForm() {
+		if (!inputData.getInputText().isEmpty()) {
+			outputData.setOutputDigitalFigure(orb.getASCIIText());
+			
+		} else {
+			outputData.setOutputDigitalFigure("Caution: Item is empty!");
+			
+		}
+
+	}
+
+	private void produceCompressionSet() {
+		if (inputData.getSelectedItem().equals("Huffman")) {
+			outputData.setOutputCompressionFigure(orb.getHuffmanCode());
+			
+		} else if (inputData.getSelectedItem().equals("Shannon-Fano")) {
+			outputData.setOutputCompressionFigure(orb.getShannonCode());
+			
+		} else {
+			outputData.setOutputCompressionFigure("Keine Ahnung was los ist :(");
+			
+		}
+	}
+
+	private void setRenderedProperty() {
+		if (inputData.getChekbox()) {
+			rendered = true;
+		} else {
+			rendered = false;
+		}
+	}
+
 	public String goBackToIndex() {
 		return "index";
 	}
 
+	public SelectMenuHandler getSelectMenuItems() {
+		return selectMenuItems;
 
-	public SelectMenuHandler getItems() {
-		return items;
-		
 	}
 
-
-	public InputContainer getText() {
-		return text;
+	public InputDataContainer getInputData() {
+		return inputData;
 	}
 
-
-	public void setText(InputContainer text) {
-		this.text = text;
+	public void setInputData(InputDataContainer inputData) {
+		this.inputData = inputData;
 	}
 
+	public OutputDataContainer getOutputData() {
+		return outputData;
+	}
+
+	public void setOutputData(OutputDataContainer outputData) {
+		this.outputData = outputData;
+	}
 
 	public Orb getOrb() {
 		return orb;
 	}
 
-
 	public void setOrb(Orb orb) {
 		this.orb = orb;
 	}
-
 
 	public Boolean isRendered() {
 		return rendered;

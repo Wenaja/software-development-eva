@@ -2,12 +2,12 @@ package model.control;
 
 import java.util.Hashtable;
 
-import javafx.event.ActionEvent;
+import model.ds.Shannon;
 import model.huffman.HuffmanTree;
 import model.huffman.Iterator;
 
 public class Orb {
-	String input = "";
+	//String input = "";
 	char[] ch_input = null;
 	
 	StringBuilder output = new StringBuilder();
@@ -114,13 +114,13 @@ public class Orb {
 		ascii.put(125, "01111101");
 	}
 
-	public void start() {
+	/*public void start() {
 		//frame.setVisible(true);
-	}
+	}*/
 
 	public void takeInputToControl(String input) {
-		this.input = input;
-		this.ch_input = this.input.toCharArray();
+		//this.input = input;
+		this.ch_input = input.toCharArray();
 
 	}
 
@@ -135,7 +135,7 @@ public class Orb {
 	}
 
 	public String getHuffmanCode() {
-		HuffmanTree htree = new HuffmanTree(input);
+		HuffmanTree htree = new HuffmanTree(String.copyValueOf(ch_input));
 		Iterator iter = new Iterator(htree.getHuffmanTree());
 		Hashtable<String, String> table = iter.getCodeTable();
 		Character[] ch = new Character[ch_input.length];
@@ -144,10 +144,20 @@ public class Orb {
 			output.append(table.get(ch[i].toString()));
 		}
 		return output.toString();
+		
+	}
+	
+	public String getShannonCode() {
+		Shannon shannon = new Shannon();
+		//Iterator iter = new Iterator(shannon.getShannonTree());
+		
+		return "shannon enabled";
+		
 	}
 
-	public void setMenuItemActionEvent(ActionEvent e) {
-		/*if (e.getActionCommand() == "Huffman") {
+	
+	/*public void setMenuItemActionEvent(ActionEvent e) {
+		if (e.getActionCommand() == "Huffman") {
 			System.out.println("Huffman gewaehlt");
 		} else if (e.getActionCommand() == "Hoffmann") {
 			System.out.println("Hoffmann gewaehlt");
@@ -155,7 +165,7 @@ public class Orb {
 			System.out.println("Hoffmann gewaehlt");
 		} else {
 			System.out.println("null gewaehlt");
-		}*/
-	}
+		}
+	}*/
 
 }

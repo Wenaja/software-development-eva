@@ -7,15 +7,22 @@
 	<title><h:outputText value="Eva" /></title>
 </h:head>
 <h:body>
-
+	
 	<h:form id="eva-input-form">
-		<h:inputTextarea id="txt-area-input" name="txt-area-input" row="30" cols="50" value="#{inputController.text.inputText}" />
-		<h:outputLabel value="Entropiekodierung nach: " for="entropie" />
-		<h:selectOneMenu id="entropie" value="#{inputController.text.item}">
-			<f:selectItems value="#{inputController.items.items}" />
+		<h:panelGrid columns="1">
+		<h:outputLabel value="Texteingabefeld" for="txt-area-input" />
+		<h:inputTextarea id="txt-area-input" name="txt-area-input" row="30" cols="50" value="#{inputController.inputData.inputText}" />
+		<h:outputLabel value="Entropiekodierung nach: " for="selectMenu-entropie" />
+		<h:selectOneMenu id="selectMenu-entropie" value="#{inputController.inputData.selectedItem}">
+			<f:selectItems value="#{inputController.selectMenuItems.items}" />
 		</h:selectOneMenu>
-		<h:commandButton id="btn-compress" action="#{inputController.redirect()}" value="Text komprimieren" />
+		<h:outputLabel value="Binärdarstellung" for="chkBox-digit-show" />
+		<h:selectBooleanCheckbox id="chkBox-digit-show" value="#{inputController.inputData.chekbox}" />
+		<h:commandButton id="btn-compress" action="#{inputController.redirect()}" value="Anwenden" />
+		</h:panelGrid>
 	</h:form>
-	<h3><h:outputText value="#{inputController.orb.ASCIIText}" rendered="#{inputController.isRendered()}" /></h3>
+	<h3><h:outputText value="#{inputController.outputData.outputDigitalFigure}" rendered="#{inputController.isRendered()}" /></h3>
+	<h3><h:outputText value="#{inputController.outputData.outputCompressionFigure}" rendered="#{inputController.isRendered()}" /></h3>
+		
 </h:body>
 </html>
